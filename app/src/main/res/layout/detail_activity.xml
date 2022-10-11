@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="222dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/PostHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:padding="10dp"
+                android:text="Business Customer Service "
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@+id/MealType"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/MealType"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:paddingLeft="11dp"
+                android:text="Sporting Event Food Leftover "
+                app:layout_constraintBottom_toTopOf="@+id/line"
+                app:layout_constraintStart_toStartOf="@+id/PostHeader"
+                app:layout_constraintTop_toBottomOf="@+id/PostHeader" />
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="10dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@+id/MealType" />
+
+            <TextView
+                android:id="@+id/Details"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="13dp"
+                android:text="Distribution Details"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toTopOf="@+id/person"
+                app:layout_constraintStart_toStartOf="@+id/PostHeader"
+                app:layout_constraintTop_toBottomOf="@+id/MealType" />
+
+            <ImageView
+                android:id="@+id/date_ic"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:layout_constraintBottom_toBottomOf="@+id/date"
+                app:layout_constraintEnd_toStartOf="@+id/date"
+                app:layout_constraintStart_toStartOf="@+id/PostHeader"
+                app:layout_constraintTop_toTopOf="@+id/date"
+                app:srcCompat="@drawable/calendar_24" />
+
+            <TextView
+                android:id="@+id/date"
+                style="@style/_detail_act_list_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:text="10/03/2022"
+                app:layout_constraintBottom_toTopOf="@+id/time"
+                app:layout_constraintStart_toStartOf="@+id/MealType"
+                app:layout_constraintTop_toBottomOf="@+id/person" />
+
+            <ImageView
+                android:id="@+id/time_ic"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:layout_constraintBottom_toBottomOf="@+id/time"
+                app:layout_constraintEnd_toStartOf="@+id/time"
+                app:layout_constraintStart_toStartOf="@+id/PostHeader"
+                app:layout_constraintTop_toTopOf="@+id/time"
+                app:srcCompat="@drawable/clock" />
+
+            <TextView
+                android:id="@+id/time"
+                style="@style/_detail_act_list_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11:00"
+                app:layout_constraintBottom_toTopOf="@+id/location"
+                app:layout_constraintStart_toStartOf="@+id/date"
+                app:layout_constraintTop_toBottomOf="@+id/date" />
+
+            <ImageView
+                android:id="@+id/location_ic"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:layout_constraintBottom_toBottomOf="@+id/location"
+                app:layout_constraintEnd_toStartOf="@+id/location"
+                app:layout_constraintStart_toStartOf="@+id/PostHeader"
+                app:layout_constraintTop_toTopOf="@+id/location"
+                app:srcCompat="@drawable/location" />
+
+            <TextView
+                android:id="@+id/location"
+                style="@style/_detail_act_list_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hawthorn, Victoria"
+                app:layout_constraintBottom_toTopOf="@+id/food"
+                app:layout_constraintStart_toStartOf="@+id/date"
+                app:layout_constraintTop_toBottomOf="@+id/time" />
+
+            <ImageView
+                android:id="@+id/company_ic"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:layout_constraintBottom_toBottomOf="@+id/company"
+                app:layout_constraintEnd_toStartOf="@+id/company"
+                app:layout_constraintStart_toStartOf="@+id/PostHeader"
+                app:layout_constraintTop_toTopOf="@+id/company"
+                app:srcCompat="@drawable/company" />
+
+            <TextView
+                android:id="@+id/company"
+                style="@style/_detail_act_list_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delaware North, MCC"
+                app:layout_constraintBottom_toTopOf="@+id/line1"
+                app:layout_constraintStart_toStartOf="@+id/date"
+                app:layout_constraintTop_toBottomOf="@+id/contact" />
+
+            <ImageView
+                android:id="@+id/food_ic"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:layout_constraintBottom_toBottomOf="@+id/food"
+                app:layout_constraintEnd_toStartOf="@+id/food"
+                app:layout_constraintStart_toStartOf="@+id/PostHeader"
+                app:layout_constraintTop_toTopOf="@+id/food"
+                app:srcCompat="@drawable/food_24" />
+
+            <TextView
+                android:id="@+id/food"
+                style="@style/_detail_act_list_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Burger and French Fries"
+                app:layout_constraintBottom_toTopOf="@+id/contact"
+                app:layout_constraintStart_toStartOf="@+id/date"
+                app:layout_constraintTop_toBottomOf="@+id/location" />
+
+            <ImageView
+                android:id="@+id/person_ic"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:layout_constraintBottom_toBottomOf="@+id/person"
+                app:layout_constraintEnd_toStartOf="@+id/person"
+                app:layout_constraintStart_toStartOf="@+id/PostHeader"
+                app:layout_constraintTop_toTopOf="@+id/person"
+                app:srcCompat="@drawable/person_24" />
+
+            <TextView
+                android:id="@+id/person"
+                style="@style/_detail_act_list_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="500"
+                app:layout_constraintBottom_toTopOf="@+id/date"
+                app:layout_constraintStart_toStartOf="@+id/date"
+                app:layout_constraintTop_toBottomOf="@+id/Details" />
+
+            <ImageView
+                android:id="@+id/contact_ic"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:layout_constraintBottom_toBottomOf="@+id/contact"
+                app:layout_constraintEnd_toStartOf="@+id/contact"
+                app:layout_constraintStart_toStartOf="@+id/PostHeader"
+                app:layout_constraintTop_toTopOf="@+id/contact"
+                app:srcCompat="@drawable/contact_24" />
+
+            <TextView
+                android:id="@+id/contact"
+                style="@style/_detail_act_list_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+61 9030 890 321"
+                app:layout_constraintBottom_toTopOf="@+id/company"
+                app:layout_constraintStart_toStartOf="@+id/date"
+                app:layout_constraintTop_toBottomOf="@+id/food" />
+
+            <View
+                android:id="@+id/line1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="10dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@+id/company" />
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/descriptionDetails"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="26dp"-->
+            <!--                android:layout_marginTop="20dp"-->
+            <!--                android:paddingLeft="13dp"-->
+            <!--                android:text="Distribution Description"-->
+            <!--                android:textSize="10sp"-->
+            <!--                app:layout_constraintBottom_toTopOf="@+id/description"-->
+            <!--                app:layout_constraintStart_toStartOf="@+id/PostHeader"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/company" />-->
+
+            <TextView
+                android:id="@+id/description"
+                style="@style/_detail_act_list_items"
+                android:layout_marginBottom="70dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/date_ic"
+                app:layout_constraintTop_toBottomOf="@+id/line1"
+                app:layout_constraintWidth_percent="0.93" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#009688"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/updateBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Post"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/deleteBtn" />
+
+    <Button
+        android:id="@+id/deleteBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete Post"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/updateBtn"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--people , contact , posted date-->

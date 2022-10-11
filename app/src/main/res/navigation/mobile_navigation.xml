@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_change_page"
+        android:name="com.example.wastemanagement.ui.dashboard.DashboardFragment"
+        android:label="@string/title_page"
+        tools:layout="@layout/fragment_change_page" />
+
+    <fragment
+        android:id="@+id/navigation_sort"
+        android:name="com.example.wastemanagement.ui.notifications.NotificationsFragment"
+        android:label="@string/title_sort"
+        tools:layout="@layout/fragment_sort" />
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.wastemanagement.ui.notifications.PageFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.example.wastemanagement.ui.notifications.SearchFragment"
+        android:label="@string/title_search"
+        tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/navigation_profile_pic"
+        android:name="com.example.wastemanagement.ui.home.HomeFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_page" />
+</navigation>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "636650471184",
+    "project_id": "waste-management-project-88134",
+    "storage_bucket": "waste-management-project-88134.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:636650471184:android:16a538868c7881044e6f95",
+        "android_client_info": {
+          "package_name": "com.example.wastemanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "636650471184-uj0hsma87525u3faae40uos98bf4ucu1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDV4rGhJ-UnMjLqklV5RX8P8Z7OUnDNK7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "636650471184-uj0hsma87525u3faae40uos98bf4ucu1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
