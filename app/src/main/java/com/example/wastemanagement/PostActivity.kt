@@ -82,7 +82,7 @@ class PostActivity: AppCompatActivity(),AdapterView.OnItemSelectedListener {
             val location = locationInput.text.toString()
             val contact = numberIsValid(contactInput) //if(numberIsValid(contactInput)) contactInput.text.toString() else ""
             val date = dateIsValid(dateInput.text.toString(),dateInput)//if(dateIsValid(dateInput.text.toString(),dateInput)) dateInput.text.toString() else ""
-            val postDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH)) // Getting Current Date and Converting it into the given date format
+            val postDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd", Locale.ENGLISH)) // Getting Current Date and Converting it into the given date format
             val desc = description.text.toString()
 //            meal and time from above
 
@@ -110,16 +110,16 @@ class PostActivity: AppCompatActivity(),AdapterView.OnItemSelectedListener {
     }
 
     private fun dateIsValid( value: String,view: EditText): Boolean {
-        val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH)
+        val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd", Locale.ENGLISH)
         try {
             val ld = LocalDate.parse(value, formatter)
             val today = LocalDate.now()
             val result = ld.format(formatter)
             Log.d("Date4", result.toString())
             if(result == value){
-                val year = Integer.parseInt(value.substring(6))
-                val day = Integer.parseInt(value.substring(0,2))
-                val month = Integer.parseInt(value.substring(3,5))
+                val year = Integer.parseInt(value.substring(0,4))
+                val month = Integer.parseInt(value.substring(5,7))
+                val day = Integer.parseInt(value.substring(8))
                 return if((year<today.year) || (day<today.dayOfMonth && month<= today.monthValue && year<=today.year) || (month<today.monthValue && year<=today.year)){
                     Log.d("Date Check", "${((year<today.year) || (day<today.dayOfMonth && month<= today.monthValue && year<=today.year) || (month<today.monthValue && year<=today.year))}")
                     view.error = "You Cannot have a Post for the Past"

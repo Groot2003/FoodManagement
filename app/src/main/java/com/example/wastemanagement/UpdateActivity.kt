@@ -10,7 +10,6 @@ import android.widget.*
 import android.widget.TimePicker.OnTimeChangedListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
 import com.example.wastemanagement.databinding.PostEditingBinding
 import java.io.IOException
 import java.time.LocalDate
@@ -43,7 +42,8 @@ class UpdateActivity: AppCompatActivity(),AdapterView.OnItemSelectedListener {
         val contactInput: TextView = binding.ContactInput // Phone Number Check
         val mealTypeInput = binding.MealTypeInput // Spinner Use Options
         val timeInput = binding.TimeInput // Time Checking Possible
-        val submit: TextView = binding.Post //Submit Button
+        val submitBtn: Button = binding.Post //Submit Button
+        val backBtn: Button = binding.Back
         val dateInput:TextView = binding.DateInput // Date Checking Possible
         val page = binding.PageHeader
         val description: TextView = binding.DescriptionInput
@@ -59,7 +59,7 @@ class UpdateActivity: AppCompatActivity(),AdapterView.OnItemSelectedListener {
             postInput.text = it.postcode.toString()
             contactInput.text = it.contact.toString()
 //            mealTypeInput =
-            dateInput.text = it.date.toString()
+            dateInput.text = it.date
             page.text = "Updating Post"
             timeInput.hour = Integer.parseInt(it.time.substring(0,2))
             timeInput.minute=Integer.parseInt(it.time.substring(3));
@@ -88,7 +88,10 @@ class UpdateActivity: AppCompatActivity(),AdapterView.OnItemSelectedListener {
         //Getting Meal Type
         mealTypeInput.onItemSelectedListener = this@UpdateActivity
 
-        submit.setOnClickListener{
+        backBtn.setOnClickListener{
+            finish()
+        }
+        submitBtn.setOnClickListener{
             Log.d("View Model", "$mainViewModel")
             val postcode = postcodeIsValid(postInput) //if(postcodeIsValid(postInput)) Integer.parseInt(postInput.text.toString()) else 0
             val title = titleInput.text.toString()
@@ -183,16 +186,16 @@ class UpdateActivity: AppCompatActivity(),AdapterView.OnItemSelectedListener {
     }
 
     private fun dateIsValid( value: String,view: TextView): Boolean {
-        val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH)
+        val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd", Locale.ENGLISH)
         try {
             val ld = LocalDate.parse(value, formatter)
             val today = LocalDate.now()
             val result = ld.format(formatter)
             Log.d("Date4", result.toString())
             if(result == value){
-                val year = Integer.parseInt(value.substring(6))
-                val day = Integer.parseInt(value.substring(0,2))
-                val month = Integer.parseInt(value.substring(3,5))
+                val year = Integer.parseInt(value.substring(0,4))
+                val month = Integer.parseInt(value.substring(5,7))
+                val day = Integer.parseInt(value.substring(8))
                 return if((year<today.year) || (day<today.dayOfMonth && month<= today.monthValue && year<=today.year) || (month<today.monthValue && year<=today.year)){
                     Log.d("Date Check", "${((year<today.year) || (day<today.dayOfMonth && month<= today.monthValue && year<=today.year) || (month<today.monthValue && year<=today.year))}")
                     view.error = "You Cannot have a Post for the Past"

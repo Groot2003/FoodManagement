@@ -12,130 +12,115 @@ android:layout_height="wrap_content"
 android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardBackgroundColor="#6865857E"
-    app:cardElevation="10dp"
-    app:cardCornerRadius="20dp"
-    android:layout_margin="10dp"
-    app:cardMaxElevation="12dp"
-    app:cardPreventCornerOverlap="true"
-    >
-
-    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_height="150dp"
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="#AFF4D1"
+        app:cardCornerRadius="100dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true">
 
-        <TextView
-            android:id="@+id/postHeader"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="serif"
-            android:padding="10dp"
-            android:text="Business Customer Service "
-            android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/description"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.06"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent"
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="wrap_content"
-            android:layout_height="26dp"
-            android:layout_marginEnd="904dp"
-            android:layout_marginBottom="8dp"
-            android:paddingLeft="10dp"
-            android:text="Sporting Event Food Leftover "
-            app:layout_constraintBottom_toTopOf="@+id/date"
-            app:layout_constraintStart_toStartOf="@+id/postHeader"
-            app:layout_constraintTop_toBottomOf="@+id/postHeader" />
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/pizza"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/date_ic"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            app:layout_constraintBottom_toBottomOf="@+id/date"
-            app:layout_constraintEnd_toStartOf="@+id/date"
-            app:layout_constraintStart_toStartOf="@+id/postHeader"
-            app:layout_constraintTop_toTopOf="@+id/date"
-            app:srcCompat="@drawable/clock" />
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="919dp"
-            android:layout_marginStart="20dp"
-            android:paddingLeft="5dp"
-            android:text="Mon, October 10th 6:00pm - 11:00pm"
-            app:layout_constraintBottom_toTopOf="@+id/location"
-            app:layout_constraintStart_toStartOf="@+id/description"
-            app:layout_constraintTop_toBottomOf="@+id/description" />
+            <TextView
+                style="@style/_card_view"
+                android:textStyle="bold|italic"
+                android:id="@+id/postHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:layout_marginBottom="8dp"
+                android:text="Sporting Event Food Leftover "
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.06"
+                app:layout_constraintStart_toEndOf="@+id/profile_image"
+                app:layout_constraintTop_toTopOf="@+id/profile_image" />
 
-        <ImageView
-            android:id="@+id/location_ic"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            app:layout_constraintBottom_toBottomOf="@+id/location"
-            app:layout_constraintEnd_toStartOf="@+id/location"
-            app:layout_constraintStart_toStartOf="@+id/postHeader"
-            app:layout_constraintTop_toTopOf="@+id/location"
-            app:srcCompat="@drawable/location" />
+            <ImageView
+                android:id="@+id/date_ic"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:layout_constraintBottom_toBottomOf="@+id/date"
+                app:layout_constraintEnd_toStartOf="@+id/date"
+                app:layout_constraintStart_toStartOf="@+id/postHeader"
+                app:layout_constraintTop_toTopOf="@+id/date"
+                app:srcCompat="@drawable/calendar_24" />
 
-        <TextView
-            android:id="@+id/location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="919dp"
-            android:paddingLeft="5dp"
-            android:text="Hawthorn, Victoria"
-            app:layout_constraintBottom_toTopOf="@+id/company"
-            app:layout_constraintStart_toStartOf="@+id/date"
-            app:layout_constraintTop_toBottomOf="@+id/date" />
+            <TextView
+                style="@style/_card_view"
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="2dp"
+                android:paddingLeft="5dp"
+                android:text="23/04/2022"
+                app:layout_constraintBottom_toTopOf="@+id/time"
+                app:layout_constraintStart_toStartOf="@+id/postHeader"
+                app:layout_constraintTop_toBottomOf="@+id/postHeader" />
 
-        <ImageView
-            android:id="@+id/company_ic"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            app:layout_constraintBottom_toBottomOf="@+id/company"
-            app:layout_constraintEnd_toStartOf="@+id/company"
-            app:layout_constraintStart_toStartOf="@+id/postHeader"
-            app:layout_constraintTop_toTopOf="@+id/company"
-            app:srcCompat="@drawable/company" />
+            <ImageView
+                android:id="@+id/time_ic"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:layout_constraintBottom_toBottomOf="@+id/time"
+                app:layout_constraintEnd_toStartOf="@+id/time"
+                app:layout_constraintStart_toStartOf="@+id/postHeader"
+                app:layout_constraintTop_toTopOf="@+id/time"
+                app:srcCompat="@drawable/clock" />
 
-        <TextView
-            android:id="@+id/company"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="919dp"
-            android:paddingLeft="5dp"
-            android:text="Delaware North, MCC"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/date"
-            app:layout_constraintTop_toBottomOf="@+id/location" />
+            <TextView
+                style="@style/_card_view"
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="2dp"
+                android:paddingLeft="5dp"
+                android:text="11:00pm"
+                app:layout_constraintBottom_toTopOf="@+id/location"
+                app:layout_constraintStart_toStartOf="@+id/postHeader"
+                app:layout_constraintTop_toBottomOf="@+id/date" />
 
-        <TextView
-            android:id="@+id/recent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:text="TextView"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/postHeader"
-            app:layout_constraintVertical_bias="0.0" />
+            <ImageView
+                android:id="@+id/location_ic"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:layout_constraintBottom_toBottomOf="@+id/location"
+                app:layout_constraintEnd_toStartOf="@+id/location"
+                app:layout_constraintStart_toStartOf="@+id/postHeader"
+                app:layout_constraintTop_toTopOf="@+id/location"
+                app:srcCompat="@drawable/location" />
+
+            <TextView
+                style="@style/_card_view"
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:paddingLeft="5dp"
+                android:text="Hawthorn, Victoria"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/date"
+                app:layout_constraintTop_toBottomOf="@+id/time" />
 
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

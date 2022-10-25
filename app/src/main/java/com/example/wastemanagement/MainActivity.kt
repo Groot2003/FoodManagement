@@ -17,6 +17,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.wastemanagement.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.lifecycle.MutableLiveData
+import com.marcinmoskala.arcseekbar.ArcSeekBar
+import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: TheAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var mainViewModel: MainViewModel
+    val progress: MutableLiveData<Int> = MutableLiveData(0)
     var loadingPB: ProgressBar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,6 +63,34 @@ class MainActivity : AppCompatActivity() {
         adapter = TheAdapter(mainViewModel.items.value!!) { showDetail(it) }
         listView.adapter = adapter
         Log.d("View Model MA", "$mainViewModel")
+
+        //Sorting Seek Bar
+        val seek = findViewById<ArcSeekBar>(R.id.seekBar)
+        if(seek!=null){
+            Log.d("seek", seek.toString())
+            progress.value = seek.progress
+        }
+        else {
+            Log.d("seek", "is null")
+        }
+        seek.onProgressChangedListener?.invoke(seek.progress)
+        progress.observe(this) { value ->
+            run {
+                Log.d("seek", value.toString())
+                when(progress.value){
+                    in 2..25 -> Log.d("seek", "Breakfast: ")
+                    in 26..50 -> Log.d("seek", "Lunch: ")
+                    in 51..75 -> Log.d("seek", "Snacks: ")
+                    in 76..100 -> Log.d("seek", "Dinner: ")
+            } }
+        }
+        val sortBTN = findViewById<TextView>(R.id.easySort)
+        sortBTN.setOnClickListener{
+            Log.d("seek", "Seek Value on Click of SortBTN: "+seek.progress.toString())
+            mainViewModel.sortData("date")
+        }
+
+//        Updating Adapter
         mainViewModel.items.observe(this) { list: List<Post> ->
             run {
                 Log.d("Database", "onResume: $list")
@@ -67,7 +100,8 @@ class MainActivity : AppCompatActivity() {
                     loadingPB!!.visibility = View.GONE
 
                 }
-        } }
+            }
+        }
     }
 
     private fun showDetail(item: Post) {

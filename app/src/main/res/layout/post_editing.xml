@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#D4EFFF">
 
 
     <TableLayout
@@ -29,11 +30,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
+                    <Button
                         android:id="@+id/Back"
+                        android:layout_margin="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="back"
+                        android:text="Back"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/PageHeader"
                         app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -43,6 +45,9 @@
 
                     <TextView
                         android:id="@+id/PageHeader"
+                        style="@style/_post_editing_title_items"
+                        android:textStyle="bold|italic"
+                        android:textSize="19sp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="Post a Distribution"
@@ -51,11 +56,12 @@
                         app:layout_constraintStart_toEndOf="@+id/Back"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
+                    <Button
                         android:id="@+id/Post"
+                        android:layout_margin="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="Share  "
+                        android:text="Share"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/PageHeader"
@@ -80,6 +86,7 @@
 
                     <TextView
                         android:id="@+id/TitleHint"
+                        style="@style/_post_editing_title_items"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Title"
@@ -90,6 +97,7 @@
 
                     <EditText
                         android:id="@+id/TitleInput"
+                        style="@style/_post_editing_title_items"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -120,6 +128,7 @@
 
                     <TextView
                         android:id="@+id/CompanyHint"
+                        style="@style/_post_editing_title_items"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Company"
@@ -129,6 +138,7 @@
 
                     <EditText
                         android:id="@+id/CompanyInput"
+                        style="@style/_post_editing_title_items"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -158,6 +168,7 @@
 
                     <TextView
                         android:id="@+id/PeopleHint"
+                        style="@style/_post_editing_title_items"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Food For"
@@ -167,6 +178,7 @@
 
                     <EditText
                         android:id="@+id/PeopleInput"
+                        style="@style/_post_editing_title_items"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:hint="No of People"
@@ -180,6 +192,7 @@
 
                     <TextView
                         android:id="@+id/DateHint"
+                        style="@style/_post_editing_title_items"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="On"
@@ -189,6 +202,7 @@
 
                     <EditText
                         android:id="@+id/DateInput"
+                        style="@style/_post_editing_title_items"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:hint="Date"
@@ -219,6 +233,7 @@
 
                     <TextView
                         android:id="@+id/TimeHint"
+                        style="@style/_post_editing_title_items"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Time"
@@ -266,6 +281,7 @@
 
                     <TextView
                         android:id="@+id/MealTypeHint"
+                        style="@style/_post_editing_title_items"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Meal Type"
@@ -275,6 +291,7 @@
 
                     <Spinner
                         android:id="@+id/MealTypeInput"
+                        style="@style/_post_editing_title_items"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:minWidth="48dp"
@@ -286,6 +303,7 @@
 
                     <TextView
                         android:id="@+id/FoodItem"
+                        style="@style/_post_editing_title_items"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Food Items"
@@ -295,6 +313,7 @@
 
                     <EditText
                         android:id="@+id/FoodItemInput"
+                        style="@style/_post_editing_title_items"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:hint="Burgers, Pasta, Etc"
@@ -324,6 +343,7 @@
 
                     <TextView
                         android:id="@+id/LocationHint"
+                        style="@style/_post_editing_title_items"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Location"
@@ -333,6 +353,7 @@
 
                     <EditText
                         android:id="@+id/LocationInput"
+                        style="@style/_post_editing_title_items"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:hint="Melbourne Central, Victoria"
@@ -346,6 +367,7 @@
 
                     <TextView
                         android:id="@+id/PostHint"
+                        style="@style/_post_editing_title_items"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="PostCode"
@@ -355,6 +377,7 @@
 
                     <EditText
                         android:id="@+id/PostInput"
+                        style="@style/_post_editing_title_items"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:hint="3122"
@@ -385,6 +408,7 @@
 
                     <TextView
                         android:id="@+id/ContactHint"
+                        style="@style/_post_editing_title_items"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Contact"
@@ -394,6 +418,7 @@
 
                     <EditText
                         android:id="@+id/ContactInput"
+                        style="@style/_post_editing_title_items"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="+912 4545"
@@ -423,6 +448,7 @@
 
                     <TextView
                         android:id="@+id/DescriptionHint"
+                        style="@style/_post_editing_title_items"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Distibution Description"
@@ -432,6 +458,7 @@
 
                     <EditText
                         android:id="@+id/DescriptionInput"
+                        style="@style/_post_editing_title_items"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Meeting Point and Food Details Etc."

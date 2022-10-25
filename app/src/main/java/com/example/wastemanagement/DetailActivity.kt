@@ -15,7 +15,10 @@ import android.content.pm.PackageManager;
 import android.location.Address
 import android.location.Geocoder
 import android.util.Log
+import android.widget.ImageView
+import androidx.lifecycle.ViewModelProvider
 import java.io.IOException
+import kotlin.random.Random
 
 class DetailActivity: AppCompatActivity() {
 
@@ -23,6 +26,7 @@ class DetailActivity: AppCompatActivity() {
     private lateinit var post:Post
     private var CALL_PERMISSION_REQUEST_CODE = 1
     private var phNum = ""
+    private lateinit var mainViewModel: MainViewModel
 
     private val getContent = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
         val data = result.data?.getParcelableExtra<Post>("Post")
@@ -37,6 +41,7 @@ class DetailActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         binding = DetailActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -45,6 +50,7 @@ class DetailActivity: AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        val imgV : ImageView = binding.img
         val postHeader: TextView = binding.PostHeader
         val meal: TextView = binding.MealType
         val person: TextView = binding.person
@@ -58,6 +64,14 @@ class DetailActivity: AppCompatActivity() {
 //        val dateInput:TextView = binding.DateInput // POST Created DATE
         val updateBTN = binding.updateBtn
         val deleteBTN = binding.deleteBtn
+
+        val img :Int = when (Random.nextInt(0, 3)) {
+            1 -> R.drawable.dumplings
+            2 -> R.drawable.hotdog
+            3 -> R.drawable.pizza
+            else -> R.drawable.drinks
+        }
+        imgV.setImageResource(img)
 
         //Putting in the Values
         post.let {
@@ -125,6 +139,12 @@ class DetailActivity: AppCompatActivity() {
                 putExtra("Post",post)
             }
             getContent.launch(intent)
+        }
+
+        deleteBTN.setOnClickListener{
+            val displayText = mainViewModel.deletePost(post)
+            Toast.makeText(this,displayText,Toast.LENGTH_SHORT)
+            finish()
         }
     }
 
