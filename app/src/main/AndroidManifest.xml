@@ -17,8 +17,11 @@
         <activity android:name=".DetailActivity"></activity>
         <activity android:name=".PostActivity"></activity>
         <activity android:name=".UpdateActivity"></activity>
+        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".MainActivity"></activity>
+
         <activity
-            android:name=".MainActivity"
+            android:name=".SignInActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>

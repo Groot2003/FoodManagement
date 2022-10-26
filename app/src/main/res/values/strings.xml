@@ -1,5 +1,27 @@
 <resources>
-    <string name="app_name">WasteManagement</string>
+    <string name="app_name">Waste Management</string>
+    <!--    Detail Activity Page-->
+    <string name="da_postHeader">Business Customer Service</string>
+    <string name="da_mealType">Sporting Event Food Leftover</string>
+    <string name="da_location">Hawthorn, Victoria</string>
+    <string name="da_time">11:00</string>
+    <string name="da_date">2022/11/01</string>
+    <string name="da_detail">Distribution Details</string>
+    <string name="da_company">Delaware North, MCC</string>
+    <string name="da_food">Burger and French Fries</string>
+    <string name="da_person">500</string>
+    <string name="da_description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <!--    Detail Activity Page-->
+
+    <!--    Sign In Page-->
+    <string name="si_SignInBtn">Sign In</string>
+    <string name="si_SignInTxt">Already Registered , Sign In !</string>
+    <string name="si_SignUpBtn">Sign Up</string>
+    <string name="si_SignUpTxt">Not Registered Yet , Sign Up !</string>
+    <!--    Sign In Page-->
+
+    <!--    Main Activity Page-->
+    <string name="filter">Filter</string>
     <string name="title_home">Home</string>
     <string name="title_profile">Profile</string>
     <string name="title_sort">Sort</string>
@@ -8,7 +30,7 @@
     <string name="sort_Dis_date">Distribution Date</string>
     <string name="sort_Post_date">Posted Date</string>
     <string name="sort_name">Distributor Name</string>
-    <string name="sort_location">Location</string>
+    <string name="sort_Post_name">Name</string>
     <string name="sort_people">No of People Feedable</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"

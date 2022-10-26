@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="serif"
                 android:padding="10dp"
-                android:text="Business Customer Service "
+                android:text="@string/da_postHeader"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/MealType"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="26dp"
                 android:paddingLeft="11dp"
-                android:text="Sporting Event Food Leftover "
+                android:text="@string/da_mealType"
                 app:layout_constraintBottom_toTopOf="@+id/line"
                 app:layout_constraintStart_toStartOf="@+id/PostHeader"
                 app:layout_constraintTop_toBottomOf="@+id/PostHeader" />
@@ -69,7 +69,7 @@
                 android:layout_height="26dp"
                 android:layout_marginTop="20dp"
                 android:paddingLeft="13dp"
-                android:text="Distribution Details"
+                android:text="@string/da_detail"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toTopOf="@+id/person"
                 app:layout_constraintStart_toStartOf="@+id/PostHeader"
@@ -91,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
-                android:text="10/03/2022"
+                android:text="@string/da_date"
                 app:layout_constraintBottom_toTopOf="@+id/time"
                 app:layout_constraintStart_toStartOf="@+id/MealType"
                 app:layout_constraintTop_toBottomOf="@+id/person" />
@@ -111,8 +111,8 @@
                 style="@style/_detail_act_list_items"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="11:00"
-                app:layout_constraintBottom_toTopOf="@+id/location"
+                android:text="@string/da_time"
+                app:layout_constraintBottom_toTopOf="@+id/food"
                 app:layout_constraintStart_toStartOf="@+id/date"
                 app:layout_constraintTop_toBottomOf="@+id/date" />
 
@@ -131,10 +131,11 @@
                 style="@style/_detail_act_list_items"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hawthorn, Victoria"
-                app:layout_constraintBottom_toTopOf="@+id/food"
+                android:text="@string/da_location"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/contact"
                 app:layout_constraintStart_toStartOf="@+id/date"
-                app:layout_constraintTop_toBottomOf="@+id/time" />
+                app:layout_constraintTop_toBottomOf="@+id/company" />
 
             <ImageView
                 android:id="@+id/company_ic"
@@ -151,10 +152,10 @@
                 style="@style/_detail_act_list_items"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Delaware North, MCC"
-                app:layout_constraintBottom_toTopOf="@+id/line1"
+                android:text="@string/da_company"
+                app:layout_constraintBottom_toTopOf="@+id/location"
                 app:layout_constraintStart_toStartOf="@+id/date"
-                app:layout_constraintTop_toBottomOf="@+id/contact" />
+                app:layout_constraintTop_toBottomOf="@+id/food" />
 
             <ImageView
                 android:id="@+id/food_ic"
@@ -171,10 +172,10 @@
                 style="@style/_detail_act_list_items"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Burger and French Fries"
-                app:layout_constraintBottom_toTopOf="@+id/contact"
+                android:text="@string/da_food"
+                app:layout_constraintBottom_toTopOf="@+id/company"
                 app:layout_constraintStart_toStartOf="@+id/date"
-                app:layout_constraintTop_toBottomOf="@+id/location" />
+                app:layout_constraintTop_toBottomOf="@+id/time" />
 
             <ImageView
                 android:id="@+id/person_ic"
@@ -191,7 +192,7 @@
                 style="@style/_detail_act_list_items"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="500"
+                android:text="@string/da_person"
                 app:layout_constraintBottom_toTopOf="@+id/date"
                 app:layout_constraintStart_toStartOf="@+id/date"
                 app:layout_constraintTop_toBottomOf="@+id/Details" />
@@ -212,9 +213,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="+61 9030 890 321"
-                app:layout_constraintBottom_toTopOf="@+id/company"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/line1"
                 app:layout_constraintStart_toStartOf="@+id/date"
-                app:layout_constraintTop_toBottomOf="@+id/food" />
+                app:layout_constraintTop_toBottomOf="@+id/location" />
 
             <View
                 android:id="@+id/line1"
@@ -222,7 +224,8 @@
                 android:layout_height="1dp"
                 android:layout_margin="10dp"
                 android:background="@android:color/black"
-                app:layout_constraintTop_toBottomOf="@+id/company" />
+                app:layout_constraintTop_toBottomOf="@+id/contact"
+                tools:layout_editor_absoluteX="10dp" />
 
             <!--            <TextView-->
             <!--                android:id="@+id/descriptionDetails"-->
@@ -239,10 +242,10 @@
             <TextView
                 android:id="@+id/description"
                 style="@style/_detail_act_list_items"
-                android:layout_marginBottom="70dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+                android:layout_marginBottom="70dp"
+                android:text="@string/da_description"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/date_ic"
                 app:layout_constraintTop_toBottomOf="@+id/line1"

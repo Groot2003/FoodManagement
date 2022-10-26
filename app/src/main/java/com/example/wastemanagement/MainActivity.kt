@@ -6,21 +6,22 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ProgressBar
+import android.widget.SearchView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wastemanagement.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import android.widget.ProgressBar
-import android.widget.TextView
-import androidx.lifecycle.MutableLiveData
 import com.marcinmoskala.arcseekbar.ArcSeekBar
-import kotlin.math.log
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,23 +39,75 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         loadingPB = binding.idProgressBar
         setContentView(binding.root)
+        //TODO DELETE THIS LATE IN THE PROJECT
+        val loginBTN = binding.login
+        loginBTN.setOnClickListener{
+            val intent = Intent(this , SignUpActivity::class.java)
+            startActivity(intent)
+        }
+
+        val Homebtn : View = findViewById(R.id.navigation_home)
+        val Dashbtn : View = findViewById(R.id.navigation_sort)
+        val SortBTN : View = findViewById(R.id.navigation_profile_pic)
+
+        SortBTN.setOnClickListener{
+            val bottomDialog = SortBS()
+            bottomDialog.show(
+                supportFragmentManager,
+                "sort_dialog_fragment"
+            )
+        }
+
+//            Dashbtn.setOnClickListener{
+//                val bottomDialog = BottomDialog("Dash")
+//                bottomDialog.show(
+//                    supportFragmentManager,
+//                    "country_dialog_fragment"
+//                )
+//            }
+//
+//            Notifbtn.setOnClickListener{
+//                val bottomDialog = BottomDialog("Notif")
+//                bottomDialog.show(
+//                    supportFragmentManager,
+//                    "country_dialog_fragment"
+//                )
+//            }
+
+        val searchView : SearchView = findViewById<SearchView>(R.id.search_bar)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            // Override onQueryTextSubmit method which is call when submit query is searched
+            override fun onQueryTextSubmit(query: String): Boolean {
+                // If the list contains the search query than filter the adapter
+                // using the filter method with the query as its argument
+//                if (mainViewModel.items.value.contains(query)) {
+//                    adapter.filter.filter(query)
+//                } else {
+//                    // Search query not found in List View
+//                    Toast.makeText(this@MainActivity, "Not found", Toast.LENGTH_LONG).show()
+//                }
+//                return false
+                Log.d("SEARCHING", "onQueryTextChange: ")
+                return false
+            }
+
+            // This method is overridden to filter the adapter according
+            // to a search query when the user is typing search
+            override fun onQueryTextChange(newText: String): Boolean {
+//                adapter.filter.filter(newText)
+                Log.d("SEARCHING", "onQueryTextChange: ")
+                return false
+            }
+        })
     }
 
     override fun onResume() {
         super.onResume()
         mainViewModel.loadData()
-        val navView: BottomNavigationView = binding.navView
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_change_page,R.id.navigation_sort,R.id.navigation_home,R.id.navigation_search,R.id.navigation_profile_pic
-            )
-        )
-
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        if (mainViewModel.items.value!!.isEmpty())
+        {
+            loadingPB!!.visibility = View.VISIBLE
+        }
 
         //Recycler View
         val listView = findViewById<RecyclerView>(R.id.PostList)
@@ -90,7 +143,7 @@ class MainActivity : AppCompatActivity() {
             mainViewModel.sortData("date")
         }
 
-//        Updating Adapter
+//      Updating Adapter
         mainViewModel.items.observe(this) { list: List<Post> ->
             run {
                 Log.d("Database", "onResume: $list")
@@ -98,7 +151,6 @@ class MainActivity : AppCompatActivity() {
                 if (mainViewModel.items.value!!.isNotEmpty())
                 {
                     loadingPB!!.visibility = View.GONE
-
                 }
             }
         }
