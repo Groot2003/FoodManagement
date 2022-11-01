@@ -21,6 +21,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.wastemanagement.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.marcinmoskala.arcseekbar.ArcSeekBar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,7 +32,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: TheAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var mainViewModel: MainViewModel
-    val progress: MutableLiveData<Int> = MutableLiveData(0)
     var loadingPB: ProgressBar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,39 +42,29 @@ class MainActivity : AppCompatActivity() {
         loadingPB = binding.idProgressBar
         setContentView(binding.root)
         //TODO DELETE THIS LATE IN THE PROJECT
-        val loginBTN = binding.login
-        loginBTN.setOnClickListener{
-            val intent = Intent(this , SignUpActivity::class.java)
-            startActivity(intent)
-        }
+//        val loginBTN = binding.login
+//        loginBTN.setOnClickListener{
+//            val intent = Intent(this , SignUpActivity::class.java)
+//            startActivity(intent)
+//        }
 
-        val Homebtn : View = findViewById(R.id.navigation_home)
-        val Dashbtn : View = findViewById(R.id.navigation_sort)
-        val SortBTN : View = findViewById(R.id.navigation_profile_pic)
+        val SortBTN : View = findViewById(R.id.navigation_sort)
+        val ProfileBTN : View = findViewById(R.id.navigation_profile_pic)
 
         SortBTN.setOnClickListener{
-            val bottomDialog = SortBS()
+            val bottomDialog = ProfileBS("sort")
             bottomDialog.show(
                 supportFragmentManager,
                 "sort_dialog_fragment"
             )
         }
-
-//            Dashbtn.setOnClickListener{
-//                val bottomDialog = BottomDialog("Dash")
-//                bottomDialog.show(
-//                    supportFragmentManager,
-//                    "country_dialog_fragment"
-//                )
-//            }
-//
-//            Notifbtn.setOnClickListener{
-//                val bottomDialog = BottomDialog("Notif")
-//                bottomDialog.show(
-//                    supportFragmentManager,
-//                    "country_dialog_fragment"
-//                )
-//            }
+        ProfileBTN.setOnClickListener{
+            val bottomDialog = ProfileBS("profile")
+            bottomDialog.show(
+                supportFragmentManager,
+                "country_dialog_fragment"
+            )
+        }
 
         val searchView : SearchView = findViewById<SearchView>(R.id.search_bar)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -119,28 +111,17 @@ class MainActivity : AppCompatActivity() {
 
         //Sorting Seek Bar
         val seek = findViewById<ArcSeekBar>(R.id.seekBar)
-        if(seek!=null){
-            Log.d("seek", seek.toString())
-            progress.value = seek.progress
-        }
-        else {
-            Log.d("seek", "is null")
-        }
-        seek.onProgressChangedListener?.invoke(seek.progress)
-        progress.observe(this) { value ->
-            run {
-                Log.d("seek", value.toString())
-                when(progress.value){
-                    in 2..25 -> Log.d("seek", "Breakfast: ")
-                    in 26..50 -> Log.d("seek", "Lunch: ")
-                    in 51..75 -> Log.d("seek", "Snacks: ")
-                    in 76..100 -> Log.d("seek", "Dinner: ")
-            } }
-        }
-        val sortBTN = findViewById<TextView>(R.id.easySort)
-        sortBTN.setOnClickListener{
+        val filterBTN = findViewById<TextView>(R.id.easySort)
+        filterBTN.setOnClickListener{
             Log.d("seek", "Seek Value on Click of SortBTN: "+seek.progress.toString())
-            mainViewModel.sortData("date")
+            val value :String = when(seek.progress){
+                in 2..25 -> "Breakfast"
+                in 26..50 -> "Lunch"
+                in 51..75 -> "Snacks"
+                in 76..100 -> "Dinner"
+                else -> "Lunch"
+            }
+            mainViewModel.filterData("meal",value)
         }
 
 //      Updating Adapter

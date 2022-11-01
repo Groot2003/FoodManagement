@@ -13,11 +13,13 @@
     <string name="da_description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     <!--    Detail Activity Page-->
 
-    <!--    Sign In Page-->
+    <!--    Sign In/Up & Users Page-->
     <string name="si_SignInBtn">Sign In</string>
     <string name="si_SignInTxt">Already Registered , Sign In !</string>
     <string name="si_SignUpBtn">Sign Up</string>
     <string name="si_SignUpTxt">Not Registered Yet , Sign Up !</string>
+    <string name="usa_Consumer">Consumer</string>
+    <string name="usa_Provider">Provider</string>
     <!--    Sign In Page-->
 
     <!--    Main Activity Page-->
@@ -27,6 +29,9 @@
     <string name="title_sort">Sort</string>
     <string name="title_search">Search</string>
     <string name="title_page">Applied</string>
+    <string name="profile_frag_profile">Profile</string>
+    <string name="profile_frag_settings">Settings</string>
+    <string name="profile_frag_logout">Logout</string>
     <string name="sort_Dis_date">Distribution Date</string>
     <string name="sort_Post_date">Posted Date</string>
     <string name="sort_name">Distributor Name</string>

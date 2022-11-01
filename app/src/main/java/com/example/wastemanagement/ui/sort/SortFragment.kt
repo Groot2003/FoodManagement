@@ -1,21 +1,18 @@
-package com.example.wastemanagement.ui.notifications
+package com.example.wastemanagement.ui.sort
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.wastemanagement.databinding.FragmentPageBinding
 import com.example.wastemanagement.databinding.FragmentSortBinding
 
-class PageFragment : Fragment() {
+class SortFragment : Fragment() {
 
-    private var _binding: FragmentPageBinding? = null
+    private var _binding: FragmentSortBinding? = null
 
     // This property is only valid between onCreateView and
-    // onDestroyView
+    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -23,10 +20,7 @@ class PageFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
-
-        _binding = FragmentPageBinding.inflate(inflater, container, false)
+        _binding = FragmentSortBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root

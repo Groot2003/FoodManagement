@@ -15,6 +15,7 @@ import android.content.pm.PackageManager;
 import android.location.Address
 import android.location.Geocoder
 import android.util.Log
+import android.view.View.GONE
 import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
 import java.io.IOException
@@ -27,6 +28,7 @@ class DetailActivity: AppCompatActivity() {
     private var CALL_PERMISSION_REQUEST_CODE = 1
     private var phNum = ""
     private lateinit var mainViewModel: MainViewModel
+    private lateinit var userViewModel : UserViewModel
 
     private val getContent = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
         val data = result.data?.getParcelableExtra<Post>("Post")
@@ -42,9 +44,9 @@ class DetailActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         binding = DetailActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         post = intent.getParcelableExtra("Post")!!
     }
 
@@ -64,6 +66,13 @@ class DetailActivity: AppCompatActivity() {
 //        val dateInput:TextView = binding.DateInput // POST Created DATE
         val updateBTN = binding.updateBtn
         val deleteBTN = binding.deleteBtn
+
+        Log.d("Auth In Detail Act", "User Type: ${userViewModel.getUserType()}")
+        if(userViewModel.getUserType()!="provider"){
+            updateBTN.visibility = GONE
+            deleteBTN.visibility = GONE
+            binding.materialToolbar.visibility = GONE
+        }
 
         val img :Int = when (Random.nextInt(0, 3)) {
             1 -> R.drawable.dumplings

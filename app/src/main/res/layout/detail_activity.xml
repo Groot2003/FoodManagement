@@ -133,9 +133,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/da_location"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/contact"
+                app:layout_constraintBottom_toTopOf="@+id/line1"
                 app:layout_constraintStart_toStartOf="@+id/date"
-                app:layout_constraintTop_toBottomOf="@+id/company" />
+                app:layout_constraintTop_toBottomOf="@+id/contact" />
 
             <ImageView
                 android:id="@+id/company_ic"
@@ -153,7 +153,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/da_company"
-                app:layout_constraintBottom_toTopOf="@+id/location"
+                app:layout_constraintBottom_toTopOf="@+id/contact"
                 app:layout_constraintStart_toStartOf="@+id/date"
                 app:layout_constraintTop_toBottomOf="@+id/food" />
 
@@ -214,9 +214,9 @@
                 android:layout_height="wrap_content"
                 android:text="+61 9030 890 321"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/line1"
+                app:layout_constraintBottom_toTopOf="@+id/location"
                 app:layout_constraintStart_toStartOf="@+id/date"
-                app:layout_constraintTop_toBottomOf="@+id/location" />
+                app:layout_constraintTop_toBottomOf="@+id/company" />
 
             <View
                 android:id="@+id/line1"
@@ -224,7 +224,7 @@
                 android:layout_height="1dp"
                 android:layout_margin="10dp"
                 android:background="@android:color/black"
-                app:layout_constraintTop_toBottomOf="@+id/contact"
+                app:layout_constraintTop_toBottomOf="@+id/location"
                 tools:layout_editor_absoluteX="10dp" />
 
             <!--            <TextView-->

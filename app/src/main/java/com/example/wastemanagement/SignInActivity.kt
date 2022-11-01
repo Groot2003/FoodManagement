@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.wastemanagement.databinding.ActivitySignInBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -22,13 +23,17 @@ class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignInBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var googleSignInClient : GoogleSignInClient
+    private lateinit var userViewModel : UserViewModel
+    private lateinit var type : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+        val tp = intent.getStringExtra("type")
+        type = intent.getStringExtra("type")?:"consumer"
+        Log.d("auth", "Got Extra in SignIn: $tp")
         firebaseAuth = FirebaseAuth.getInstance()
         binding.link2signup.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
@@ -54,8 +59,13 @@ class SignInActivity : AppCompatActivity() {
 
                 firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
+                        val authenticated = userViewModel.getRealUser(type)
+                        if (authenticated){
+                            val intent = Intent(this , MainActivity::class.java)
+                            startActivity(intent)
+                        } else{
+                            Toast.makeText(this, "Sign In Using the Appropriate Account" , Toast.LENGTH_SHORT).show()
+                        }
                     } else {
                         Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
                     }
@@ -100,11 +110,14 @@ class SignInActivity : AppCompatActivity() {
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful){
                 Log.d("Auth", "Signed in with google")
-                updateUser()
-                val intent = Intent(this , MainActivity::class.java)
-                intent.putExtra("email" , account.email)
-                intent.putExtra("name" , account.displayName)
-                startActivity(intent)
+                userViewModel.updateUser(type)
+                val authenticated = userViewModel.getRealUser(type)
+                if (authenticated){
+                    val intent = Intent(this , MainActivity::class.java)
+                    startActivity(intent)
+                } else{
+                    Toast.makeText(this, "Sign In Using the Appropriate Account" , Toast.LENGTH_SHORT).show()
+                }
             }else{
                 Toast.makeText(this, it.exception.toString() , Toast.LENGTH_SHORT).show()
 
@@ -112,49 +125,53 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateUser() {
-        val user = firebaseAuth.currentUser
-        Log.d("Auth", "Trying to Update User profile")
-        if (user != null) {
-            if(user.displayName?.contains("|")==false)
-            {
-                val profileUpdates = userProfileChangeRequest {
-                    if (user != null) {
-                        displayName = user.displayName+"|consumer"
-//                        displayName = user.displayName+"|provider"
-                    }
-                }
-                user!!.updateProfile(profileUpdates)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            Log.d("authenticate", "User profile updated.")
-                        }
-                    }
-            }
-        }
-    }
+//    private fun updateUser() {
+//        val user = firebaseAuth.currentUser
+//        Log.d("Auth", "Trying to Update User profile")
+//        if (user != null) {
+//            if(user.displayName?.contains("|")==false)
+//            {
+//                val profileUpdates = userProfileChangeRequest {
+//                    if (user != null) {
+//                        displayName = user.displayName+"|consumer"
+////                        displayName = user.displayName+"|provider"
+//                    }
+//                }
+//                user!!.updateProfile(profileUpdates)
+//                    .addOnCompleteListener { task ->
+//                        if (task.isSuccessful) {
+//                            Log.d("authenticate", "User profile updated.")
+//                        }
+//                    }
+//            }
+//        }
+//    }
 
-    private fun getRealUser(){
-        val user = firebaseAuth.currentUser
-        Log.d("Auth", "group: $user")
-        if (user != null) {
-            val usrType = user.displayName?.split("|")
-            val group = usrType?.get(usrType.size - 1)
-            Log.d("Auth", "group: ${user.displayName}")
-        }
-    }
+//    private fun getRealUser(){
+//        val user = firebaseAuth.currentUser
+//        Log.d("Auth", "group: $user")
+//        if (user != null) {
+//            val usrType = user.displayName?.split("|")
+//            val group = usrType?.get(usrType.size - 1)
+//            Log.d("Auth", "group: $group")
+//        }
+//    }
 
     override fun onStart() {
         super.onStart()
-        if(firebaseAuth.currentUser != null){
-            val intent = Intent(this, MainActivity::class.java)
+//        if(firebaseAuth.currentUser != null){
+//            val intent = Intent(this, MainActivity::class.java)
+//            startActivity(intent)
+//        }
+        val authenticated = userViewModel.getRealUser(type)
+        if (authenticated){
+            val intent = Intent(this , MainActivity::class.java)
             startActivity(intent)
         }
     }
 
     override fun onStop() {
         super.onStop()
-        Log.d("Auth", "on Stop")
-        getRealUser()
+        userViewModel.getRealUser(type)
     }
 }

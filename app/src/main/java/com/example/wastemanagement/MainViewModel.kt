@@ -92,9 +92,9 @@ class MainViewModel:ViewModel() {
             }
     }
 
-    fun filterData(criteria: String,field: String) {
+    fun filterData(criteria: String,value: String) {
         _items.value = emptyList<Post>()
-        db.collection("Posts").whereEqualTo(field,criteria)
+        db.collection("Posts").whereEqualTo(criteria, value)
             .get()
             .addOnCompleteListener{ task ->
                 if(task.isSuccessful)

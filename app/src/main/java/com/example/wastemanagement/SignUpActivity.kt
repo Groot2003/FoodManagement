@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.wastemanagement.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
@@ -13,17 +14,21 @@ class SignUpActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignUpBinding
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var userViewModel : UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val type = intent.getStringExtra("type")?:"consumer"
+        Log.d("auth", "Got Extra: $type")
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         firebaseAuth = FirebaseAuth.getInstance()
 
         binding.link2signIn.setOnClickListener {
-            val intent = Intent(this, SignInActivity::class.java)
+            val intent = Intent(this, SignInActivity::class.java).apply {
+                putExtra("type",type)
+            }
             startActivity(intent)
         }
 
@@ -37,12 +42,13 @@ class SignUpActivity : AppCompatActivity() {
 
                     firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
                         if (it.isSuccessful) {
-                            val intent = Intent(this, SignInActivity::class.java)
-                            updateUser()
+                            userViewModel.updateUser(type)
+                            val intent = Intent(this, SignInActivity::class.java).apply {
+                                putExtra("type",type)
+                            }
                             startActivity(intent)
                         } else {
                             Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
-                            Log.d("Auth", it.exception.toString())
                         }
                     }
                 } else {
@@ -50,23 +56,7 @@ class SignUpActivity : AppCompatActivity() {
                 }
             } else {
                 Toast.makeText(this, "Empty Fields Are not Allowed !!", Toast.LENGTH_SHORT).show()
-
             }
         }
-    }
-    private fun updateUser(){
-        val user = firebaseAuth.currentUser
-        val profileUpdates = userProfileChangeRequest {
-            if (user != null) {
-//                displayName = user.displayName+"|consumer"
-                displayName = user.displayName+"|provider"
-            }
-        }
-        user!!.updateProfile(profileUpdates)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Log.d("authenticate", "User profile updated.")
-                }
-            }
     }
 }
