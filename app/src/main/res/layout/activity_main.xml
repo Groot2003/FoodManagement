@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D4EFFF">
+    style="@style/background">
 
 
     <SearchView
@@ -64,13 +64,9 @@
 
     <com.marcinmoskala.arcseekbar.ArcSeekBar
         android:id="@+id/seekBar"
+        style="@style/seekbar"
         android:layout_width="230dp"
         android:layout_height="147dp"
-        app:progressBackgroundColor="@color/teal_700"
-        app:progressBackgroundWidth="7dp"
-        app:progressColor="#01923B"
-        app:progressWidth="9dp"
-        app:progress="50"
         app:layout_constraintBottom_toTopOf="@id/nav_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -98,13 +94,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-<!--    <Button-->
-<!--        android:id="@+id/login"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Button"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <Button
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

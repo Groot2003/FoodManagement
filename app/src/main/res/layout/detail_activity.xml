@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D4EFFF">
+    style="@style/background">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -56,10 +56,10 @@
 
             <View
                 android:id="@+id/line"
+                style="@style/_detail_line_background"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_margin="10dp"
-                android:background="@android:color/black"
                 app:layout_constraintTop_toBottomOf="@+id/MealType" />
 
             <TextView
@@ -79,6 +79,7 @@
                 android:id="@+id/date_ic"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
+                style="@style/_detail_ic_background"
                 app:layout_constraintBottom_toBottomOf="@+id/date"
                 app:layout_constraintEnd_toStartOf="@+id/date"
                 app:layout_constraintStart_toStartOf="@+id/PostHeader"
@@ -100,6 +101,7 @@
                 android:id="@+id/time_ic"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
+                style="@style/_detail_ic_background"
                 app:layout_constraintBottom_toBottomOf="@+id/time"
                 app:layout_constraintEnd_toStartOf="@+id/time"
                 app:layout_constraintStart_toStartOf="@+id/PostHeader"
@@ -120,6 +122,7 @@
                 android:id="@+id/location_ic"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
+                style="@style/_detail_ic_background"
                 app:layout_constraintBottom_toBottomOf="@+id/location"
                 app:layout_constraintEnd_toStartOf="@+id/location"
                 app:layout_constraintStart_toStartOf="@+id/PostHeader"
@@ -141,6 +144,7 @@
                 android:id="@+id/company_ic"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
+                style="@style/_detail_ic_background"
                 app:layout_constraintBottom_toBottomOf="@+id/company"
                 app:layout_constraintEnd_toStartOf="@+id/company"
                 app:layout_constraintStart_toStartOf="@+id/PostHeader"
@@ -161,6 +165,7 @@
                 android:id="@+id/food_ic"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
+                style="@style/_detail_ic_background"
                 app:layout_constraintBottom_toBottomOf="@+id/food"
                 app:layout_constraintEnd_toStartOf="@+id/food"
                 app:layout_constraintStart_toStartOf="@+id/PostHeader"
@@ -181,6 +186,7 @@
                 android:id="@+id/person_ic"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
+                style="@style/_detail_ic_background"
                 app:layout_constraintBottom_toBottomOf="@+id/person"
                 app:layout_constraintEnd_toStartOf="@+id/person"
                 app:layout_constraintStart_toStartOf="@+id/PostHeader"
@@ -201,6 +207,7 @@
                 android:id="@+id/contact_ic"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
+                style="@style/_detail_ic_background"
                 app:layout_constraintBottom_toBottomOf="@+id/contact"
                 app:layout_constraintEnd_toStartOf="@+id/contact"
                 app:layout_constraintStart_toStartOf="@+id/PostHeader"
@@ -220,10 +227,10 @@
 
             <View
                 android:id="@+id/line1"
+                style="@style/_detail_line_background"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_margin="10dp"
-                android:background="@android:color/black"
                 app:layout_constraintTop_toBottomOf="@+id/location"
                 tools:layout_editor_absoluteX="10dp" />
 
@@ -256,9 +263,9 @@
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/materialToolbar"
+        style="@style/_detail_act_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#6CC4A1"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintBottom_toBottomOf="@+id/scrollView2"

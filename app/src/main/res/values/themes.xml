@@ -13,6 +13,13 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="background">
+<!--        <item name="background">#D4EFFF</item>-->
+        <item name="android:background">#D4EFFF</item>
+    </style>
+    <style name="frag_background">
+        <item name="android:background">#232323</item>
+    </style>
     <style name="Nav_Button">
         <item name="android:backgroundTint">#B1E1FF</item>
         <item name="android:gravity">left|center_vertical</item>
@@ -27,8 +34,17 @@
         <item name="android:textSize">17sp</item>
         <item name="android:gravity">center_vertical</item>
     </style>
+    <style name="_detail_act_toolbar">
+        <item name="android:background">#6CC4A1</item>
+    </style>
     <style name="_detail_act_headers">
         <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="_detail_ic_background">
+        <item name="android:tint">@color/black</item>
+    </style>
+    <style name="_detail_line_background">
+        <item name="android:background">@color/black</item>
     </style>
     <style name="_post_editing_title_items">
         <item name="android:padding">2dp</item>
@@ -40,5 +56,20 @@
     <style name="_card_view">
         <item name="android:textColor">@color/black</item>
         <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="card">
+        <item name="android:layout_margin">10dp</item>
+        <item name="cardBackgroundColor">#AFF4D1</item>
+        <item name="cardCornerRadius">100dp</item>
+        <item name="cardElevation">10dp</item>
+        <item name="cardMaxElevation">12dp</item>
+        <item name="cardPreventCornerOverlap">true</item>
+    </style>
+    <style name="seekbar">
+        <item name="progressColor">@color/teal_200</item>
+        <item name="progressBackgroundColor">@color/teal_700</item>
+        <item name="progressBackgroundWidth">7dp</item>
+        <item name="progressWidth">9dp</item>
+        <item name="progress">50</item>
     </style>
 </resources>

@@ -12,14 +12,9 @@ android:layout_height="wrap_content"
 android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
+        style="@style/card"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_margin="10dp"
-        app:cardBackgroundColor="#AFF4D1"
-        app:cardCornerRadius="100dp"
-        app:cardElevation="10dp"
-        app:cardMaxElevation="12dp"
-        app:cardPreventCornerOverlap="true">
+        android:layout_height="150dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -54,6 +49,7 @@ android:orientation="vertical">
                 android:id="@+id/date_ic"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
+                style="@style/_detail_ic_background"
                 app:layout_constraintBottom_toBottomOf="@+id/date"
                 app:layout_constraintEnd_toStartOf="@+id/date"
                 app:layout_constraintStart_toStartOf="@+id/postHeader"
@@ -77,6 +73,7 @@ android:orientation="vertical">
                 android:id="@+id/time_ic"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
+                style="@style/_detail_ic_background"
                 app:layout_constraintBottom_toBottomOf="@+id/time"
                 app:layout_constraintEnd_toStartOf="@+id/time"
                 app:layout_constraintStart_toStartOf="@+id/postHeader"
@@ -100,6 +97,7 @@ android:orientation="vertical">
                 android:id="@+id/location_ic"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
+                style="@style/_detail_ic_background"
                 app:layout_constraintBottom_toBottomOf="@+id/location"
                 app:layout_constraintEnd_toStartOf="@+id/location"
                 app:layout_constraintStart_toStartOf="@+id/postHeader"

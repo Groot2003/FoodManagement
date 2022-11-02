@@ -6,6 +6,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import androidx.fragment.app.Fragment
 import com.example.wastemanagement.SignUpActivity
 import com.example.wastemanagement.UserViewModel
@@ -30,6 +33,13 @@ class ProfileFragment : Fragment() {
         val logoutBTN = binding.logout
         logoutBTN.setOnClickListener{
             userViewModel.logout()
+            Log.d("Auth", "User Logged Out")
+        }
+
+        AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
+        val displayBTN = binding.settings
+        displayBTN.setOnClickListener{
+            AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
         }
         return binding.root
     }

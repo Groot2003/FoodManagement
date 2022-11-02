@@ -9,22 +9,13 @@ import android.view.View
 import android.widget.ProgressBar
 import android.widget.SearchView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.MutableLiveData
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wastemanagement.databinding.ActivityMainBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.marcinmoskala.arcseekbar.ArcSeekBar
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,11 +33,10 @@ class MainActivity : AppCompatActivity() {
         loadingPB = binding.idProgressBar
         setContentView(binding.root)
         //TODO DELETE THIS LATE IN THE PROJECT
-//        val loginBTN = binding.login
-//        loginBTN.setOnClickListener{
-//            val intent = Intent(this , SignUpActivity::class.java)
-//            startActivity(intent)
-//        }
+        val loginBTN = binding.login
+        loginBTN.setOnClickListener{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
 
         val SortBTN : View = findViewById(R.id.navigation_sort)
         val ProfileBTN : View = findViewById(R.id.navigation_profile_pic)

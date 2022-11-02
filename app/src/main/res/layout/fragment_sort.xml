@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B1E1FF">
+    style="@style/frag_background">
 
     <Button
         style="@style/Nav_Button"
@@ -28,9 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/distribution"
-        android:gravity="left|center_vertical"
-        android:paddingLeft="50dp"
-        android:backgroundTint="#B1E1FF"/>
+        />
 
     <Button
         style="@style/Nav_Button"
@@ -42,9 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/posted"
-        android:gravity="left|center_vertical"
-        android:paddingLeft="50dp"
-        android:backgroundTint="#B1E1FF"/>
+        />
 
     <Button
         style="@style/Nav_Button"
@@ -56,9 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/distributor"
-        android:gravity="left|center_vertical"
-        android:paddingLeft="50dp"
-        android:backgroundTint="#B1E1FF" />
+        />
 
     <Button
         style="@style/Nav_Button"
@@ -70,8 +64,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name"
-        android:gravity="left|center_vertical"
-        android:paddingLeft="50dp"
-        android:backgroundTint="#B1E1FF"/>
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
