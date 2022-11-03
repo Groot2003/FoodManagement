@@ -2,6 +2,7 @@ package com.example.wastemanagement
 //waste-management-project-88134
 //project-WasteManagement
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,7 @@ import android.widget.SearchView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var mainViewModel: MainViewModel
     var loadingPB: ProgressBar? = null
+    private var nightMode: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
@@ -32,30 +35,30 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         loadingPB = binding.idProgressBar
         setContentView(binding.root)
-        //TODO DELETE THIS LATE IN THE PROJECT
-        val loginBTN = binding.login
-        loginBTN.setOnClickListener{
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        val sharedPref = applicationContext?.getSharedPreferences("DayNight",Context.MODE_PRIVATE)
+        if (sharedPref != null) {
+            nightMode = sharedPref.getBoolean("NightMode", false)
+            Log.d("Shared Pref", "Not null: ")
         }
+        setTheme(nightMode)
 
-        val SortBTN : View = findViewById(R.id.navigation_sort)
-        val ProfileBTN : View = findViewById(R.id.navigation_profile_pic)
+        val sortBTN : View = findViewById(R.id.navigation_sort)
+        val profileBTN : View = findViewById(R.id.navigation_profile_pic)
 
-        SortBTN.setOnClickListener{
-            val bottomDialog = ProfileBS("sort")
+        sortBTN.setOnClickListener{
+            val bottomDialog = SortBS(mainViewModel)
             bottomDialog.show(
                 supportFragmentManager,
                 "sort_dialog_fragment"
             )
         }
-        ProfileBTN.setOnClickListener{
-            val bottomDialog = ProfileBS("profile")
+        profileBTN.setOnClickListener{
+            val bottomDialog = ProfileBS(this)
             bottomDialog.show(
                 supportFragmentManager,
                 "country_dialog_fragment"
             )
         }
-
         val searchView : SearchView = findViewById<SearchView>(R.id.search_bar)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             // Override onQueryTextSubmit method which is call when submit query is searched
@@ -85,7 +88,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        setTheme(nightMode)
         mainViewModel.loadData()
+        Log.d("Lifecycle", "onResume: $nightMode")
         if (mainViewModel.items.value!!.isEmpty())
         {
             loadingPB!!.visibility = View.VISIBLE
@@ -99,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         listView.adapter = adapter
         Log.d("View Model MA", "$mainViewModel")
 
-        //Sorting Seek Bar
+//        Sorting Seek Bar
         val seek = findViewById<ArcSeekBar>(R.id.seekBar)
         val filterBTN = findViewById<TextView>(R.id.easySort)
         filterBTN.setOnClickListener{
@@ -132,5 +137,24 @@ class MainActivity : AppCompatActivity() {
             putExtra("Post",item)
         }
         startActivity(intent)
+    }
+
+    fun changeTheme(nightMode: Boolean) {
+        Log.d("Theme", "Night Mode : $nightMode")
+        this.nightMode = nightMode
+        val sharedPref = applicationContext.getSharedPreferences("DayNight",Context.MODE_PRIVATE) ?: return
+        with (sharedPref.edit()) {
+            putBoolean("NightMode",nightMode)
+            apply()
+        }
+        Log.d("Theme", "changeTheme to $nightMode")
+    }
+
+    private fun setTheme(nightMode: Boolean){
+        if(nightMode){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 }

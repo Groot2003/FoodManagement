@@ -27,6 +27,16 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold|italic</item>
     </style>
+    <style name="Nav_Switch">
+        <item name="android:thumb">@drawable/light_sun_24</item>
+        <item name="android:background">#B1E1FF</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:paddingLeft">50dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold|italic</item>
+    </style>
     <style name="_detail_act_list_items">
         <item name="android:layout_marginTop">12dp</item>
         <item name="android:padding">4dp</item>

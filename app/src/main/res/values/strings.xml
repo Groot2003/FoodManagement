@@ -30,7 +30,7 @@
     <string name="title_search">Search</string>
     <string name="title_page">Applied</string>
     <string name="profile_frag_profile">Profile</string>
-    <string name="profile_frag_settings">Settings</string>
+    <string name="profile_frag_display">Display Theme</string>
     <string name="profile_frag_logout">Logout</string>
     <string name="sort_Dis_date">Distribution Date</string>
     <string name="sort_Post_date">Posted Date</string>
