@@ -125,44 +125,8 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
-//    private fun updateUser() {
-//        val user = firebaseAuth.currentUser
-//        Log.d("Auth", "Trying to Update User profile")
-//        if (user != null) {
-//            if(user.displayName?.contains("|")==false)
-//            {
-//                val profileUpdates = userProfileChangeRequest {
-//                    if (user != null) {
-//                        displayName = user.displayName+"|consumer"
-////                        displayName = user.displayName+"|provider"
-//                    }
-//                }
-//                user!!.updateProfile(profileUpdates)
-//                    .addOnCompleteListener { task ->
-//                        if (task.isSuccessful) {
-//                            Log.d("authenticate", "User profile updated.")
-//                        }
-//                    }
-//            }
-//        }
-//    }
-
-//    private fun getRealUser(){
-//        val user = firebaseAuth.currentUser
-//        Log.d("Auth", "group: $user")
-//        if (user != null) {
-//            val usrType = user.displayName?.split("|")
-//            val group = usrType?.get(usrType.size - 1)
-//            Log.d("Auth", "group: $group")
-//        }
-//    }
-
     override fun onStart() {
         super.onStart()
-//        if(firebaseAuth.currentUser != null){
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//        }
         val authenticated = userViewModel.getRealUser(type)
         if (authenticated){
             val intent = Intent(this , MainActivity::class.java)

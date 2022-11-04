@@ -45,7 +45,7 @@
         <item name="android:gravity">center_vertical</item>
     </style>
     <style name="_detail_act_toolbar">
-        <item name="android:background">#6CC4A1</item>
+        <item name="android:background">#68C3E6</item>
     </style>
     <style name="_detail_act_headers">
         <item name="android:textColor">@color/black</item>
@@ -55,6 +55,18 @@
     </style>
     <style name="_detail_line_background">
         <item name="android:background">@color/black</item>
+    </style>
+    <style name="detail_update_button">
+        <item name="android:backgroundTint">@color/yellow</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold|italic</item>
+    </style>
+    <style name="detail_delete_button">
+        <item name="android:backgroundTint">#C85252</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold|italic</item>
     </style>
     <style name="_post_editing_title_items">
         <item name="android:padding">2dp</item>
@@ -81,5 +93,8 @@
         <item name="progressBackgroundWidth">7dp</item>
         <item name="progressWidth">9dp</item>
         <item name="progress">50</item>
+    </style>
+    <style name="signing_txt">
+        <item name="android:textColor">@color/black</item>
     </style>
 </resources>

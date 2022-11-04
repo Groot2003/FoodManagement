@@ -8,11 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.Nullable
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import com.example.wastemanagement.databinding.FragmentProfileBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class ProfileBS(private val MAct: MainActivity) : BottomSheetDialogFragment() {
+class ProfileBS : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var userViewModel : UserViewModel
 
@@ -27,14 +28,31 @@ class ProfileBS(private val MAct: MainActivity) : BottomSheetDialogFragment() {
         binding.logout.setOnClickListener{
             userViewModel.logout()
             Log.d("Auth", "User Logged Out")
-            val intent = Intent(MAct , UserSelectionActivity::class.java).apply {
+            val intent = Intent(activity , UserSelectionActivity::class.java).apply {
             }
             startActivity(intent)
         }
-
-        binding.display.setOnCheckedChangeListener{ _ , isChecked ->
+        val switch = binding.display
+        val sharedPref = activity?.getSharedPreferences("DayNight",Context.MODE_PRIVATE)
+        if (sharedPref != null) {
+            val nightMode = sharedPref.getBoolean("NightMode", false)
+            switch.isChecked = nightMode
+        }
+        switch.setOnCheckedChangeListener{ _ , isChecked ->
             Log.d("Theme", "Changing Theme")
-            MAct.changeTheme(isChecked)
+            if(isChecked){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+            val sharedPref = activity?.getSharedPreferences("DayNight",Context.MODE_PRIVATE)
+            if (sharedPref != null) {
+                Log.d("Written to Shared Pref", "onCreateView: ")
+                with (sharedPref.edit()) {
+                    putBoolean("NightMode",isChecked)
+                    apply()
+                }
+            }
         }
         return binding.root
     }

@@ -8,9 +8,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/splash_screen"
+        android:icon="@drawable/splash_sc"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/splash_screen"
+        android:roundIcon="@drawable/splash_sc"
         android:supportsRtl="true"
         android:theme="@style/Theme.WasteManagement"
         tools:targetApi="31">

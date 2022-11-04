@@ -1,25 +1,28 @@
 package com.example.wastemanagement
 
-import android.content.Intent
-import android.net.Uri
-import android.os.Bundle
-import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
-import com.example.wastemanagement.databinding.DetailActivityBinding
-import androidx.core.app.ActivityCompat;
-import android.Manifest;
+import android.Manifest
 import android.annotation.SuppressLint
-import android.content.pm.PackageManager;
+import android.content.DialogInterface
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
+import android.net.Uri
+import android.os.Bundle
 import android.util.Log
 import android.view.View.GONE
 import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
+import com.example.wastemanagement.databinding.DetailActivityBinding
 import java.io.IOException
 import kotlin.random.Random
+
 
 class DetailActivity: AppCompatActivity() {
 
@@ -66,6 +69,7 @@ class DetailActivity: AppCompatActivity() {
 //        val dateInput:TextView = binding.DateInput // POST Created DATE
         val updateBTN = binding.updateBtn
         val deleteBTN = binding.deleteBtn
+        val alert = AlertDialog.Builder(this)
 
         Log.d("Auth In Detail Act", "User Type: ${userViewModel.getUserType()}")
         if(userViewModel.getUserType()!="provider"){
@@ -151,13 +155,27 @@ class DetailActivity: AppCompatActivity() {
         }
 
         deleteBTN.setOnClickListener{
-            val displayText = mainViewModel.deletePost(post)
-            Toast.makeText(this,displayText,Toast.LENGTH_SHORT)
-            finish()
+            alert.setTitle("Alert")
+                .setMessage("Do you want to Delete this Distribution Post")
+                .setCancelable(true)
+                .setPositiveButton("Delete",
+                    DialogInterface.OnClickListener { dialog, _ -> //your deleting code
+                        Log.d("Dialog", "Delete Post: ")
+                        val displayText = mainViewModel.deletePost(post)
+                        Toast.makeText(this,displayText,Toast.LENGTH_SHORT)
+                        finish()
+                        dialog.dismiss()
+                    })
+                .setNegativeButton("cancel",
+                    DialogInterface.OnClickListener { dialog, which ->
+                        Log.d("Dialog", "Do Not Delete: ")
+                        dialog.dismiss() })
+                .show()
+
         }
     }
 
-    fun askForCallPermission() {
+    private fun askForCallPermission() {
         ActivityCompat.requestPermissions(
             this@DetailActivity, arrayOf(Manifest.permission.CALL_PHONE),
             CALL_PERMISSION_REQUEST_CODE

@@ -3,7 +3,6 @@ package com.example.wastemanagement
 import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,14 +10,12 @@ import android.widget.*
 import android.widget.TimePicker.OnTimeChangedListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
 import com.example.wastemanagement.databinding.PostEditingBinding
 import java.io.IOException
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 import java.util.*
-import kotlin.math.log
 
 
 class PostActivity: AppCompatActivity(),AdapterView.OnItemSelectedListener {
@@ -44,6 +41,7 @@ class PostActivity: AppCompatActivity(),AdapterView.OnItemSelectedListener {
         val mealTypeInput = binding.MealTypeInput // Spinner Use Options
         val timeInput = binding.TimeInput // Time Checking Possible
         val submit: TextView = binding.Post //Submit Button
+        val backBtn : Button = binding.Back
         val dateInput = binding.DateInput // Date Checking Possible
         val description=binding.DescriptionInput
         var time="" //To Store Time
@@ -71,6 +69,11 @@ class PostActivity: AppCompatActivity(),AdapterView.OnItemSelectedListener {
         //Getting Meal Type
         mealTypeInput.onItemSelectedListener = this@PostActivity
 
+        //on Back Click
+        backBtn.setOnClickListener{
+            finish()
+        }
+
         //On POST Click
         submit.setOnClickListener{
             Log.d("Postcode", "submit clicked")
@@ -92,12 +95,21 @@ class PostActivity: AppCompatActivity(),AdapterView.OnItemSelectedListener {
                 Log.d("Database Sending", "Database Sending")
                 val post = Post("",title,company, dateInput.text.toString() ,foodItem, postDate , location ,Integer.parseInt(postInput.text.toString()) ,people , contactInput.text.toString() ,time, meal, desc)
 //                val post = Post(title,company, dateInput.text.toString() ,foodItem, postDate , location ,Integer.parseInt(postInput.text.toString()) ,people , contactInput.text.toString() ,time, meal, desc)
-                mainViewModel.postData(post)
-                mainViewModel.loadData()
+                mainViewModel.postData(post) {isPosted(it)}
+                val intent = Intent(this , MainActivity::class.java)
+                startActivity(intent)
             }
         }
     }
 
+    private fun isPosted(posted:Boolean){
+        if(posted){
+            Log.d("Posted", "posted ")
+            Toast.makeText(this,"New Post Added",Toast.LENGTH_SHORT).show()
+        }else {
+            Toast.makeText(this,"Error in Post Addition",Toast.LENGTH_SHORT).show()
+        }
+    }
     private fun numberIsValid(phNumber: TextView):Boolean {
         //Phone Number Check
         val number = phNumber.text.toString()

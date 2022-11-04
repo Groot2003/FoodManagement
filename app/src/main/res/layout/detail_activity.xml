@@ -234,18 +234,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/location"
                 tools:layout_editor_absoluteX="10dp" />
 
-            <!--            <TextView-->
-            <!--                android:id="@+id/descriptionDetails"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="26dp"-->
-            <!--                android:layout_marginTop="20dp"-->
-            <!--                android:paddingLeft="13dp"-->
-            <!--                android:text="Distribution Description"-->
-            <!--                android:textSize="10sp"-->
-            <!--                app:layout_constraintBottom_toTopOf="@+id/description"-->
-            <!--                app:layout_constraintStart_toStartOf="@+id/PostHeader"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/company" />-->
-
             <TextView
                 android:id="@+id/description"
                 style="@style/_detail_act_list_items"
@@ -274,6 +262,7 @@
 
     <Button
         android:id="@+id/updateBtn"
+        style="@style/detail_update_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Update Post"
@@ -283,6 +272,7 @@
 
     <Button
         android:id="@+id/deleteBtn"
+        style="@style/detail_delete_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Delete Post"

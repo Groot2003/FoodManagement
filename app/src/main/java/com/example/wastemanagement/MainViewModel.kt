@@ -41,13 +41,15 @@ class MainViewModel:ViewModel() {
             }
     }
 
-    fun postData(post:Post){
+    fun postData(post:Post,callback:(Boolean)->Unit){
         db.collection("Posts").add(post)
             .addOnSuccessListener { documentReference ->
                 Log.d("Database Adding", "DocumentSnapshot written with ID: ${documentReference.id}")
+                callback(true)
             }
             .addOnFailureListener { e ->
                 Log.w("Database Adding", "Error adding document", e)
+                callback(false)
             }
     }
 

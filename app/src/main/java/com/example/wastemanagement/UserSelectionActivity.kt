@@ -9,11 +9,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.wastemanagement.databinding.UserSelectionAcitivityBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
 
 class UserSelectionActivity : AppCompatActivity() {
 
     private lateinit var binding: UserSelectionAcitivityBinding
-    private lateinit var userViewModel : UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,8 +23,11 @@ class UserSelectionActivity : AppCompatActivity() {
 
         val consumerBtn = binding.Consumer
         val providerBtn = binding.Provider
-        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
-
+        val user = FirebaseAuth.getInstance().currentUser
+        if(user != null){
+            val intent = Intent(this , MainActivity::class.java)
+            startActivity(intent)
+        }
         consumerBtn.setOnClickListener{
             val intent = Intent(this, SignUpActivity::class.java).apply {
                 putExtra("type","consumer")

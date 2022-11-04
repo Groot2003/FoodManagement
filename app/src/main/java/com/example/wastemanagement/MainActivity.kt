@@ -7,23 +7,24 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.View.GONE
 import android.widget.ProgressBar
 import android.widget.SearchView
+import android.widget.Switch
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wastemanagement.databinding.ActivityMainBinding
+import com.example.wastemanagement.databinding.FragmentProfileBinding
 import com.marcinmoskala.arcseekbar.ArcSeekBar
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: TheAdapter
-    private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var mainViewModel: MainViewModel
     var loadingPB: ProgressBar? = null
     private var nightMode: Boolean = false
@@ -53,12 +54,23 @@ class MainActivity : AppCompatActivity() {
             )
         }
         profileBTN.setOnClickListener{
-            val bottomDialog = ProfileBS(this)
+            val bottomDialog = ProfileBS()
             bottomDialog.show(
                 supportFragmentManager,
                 "country_dialog_fragment"
             )
         }
+
+        val newPostBTN =  binding.newPost
+        val userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+        if(userViewModel.getUserType()!="provider"){
+            newPostBTN.visibility = GONE
+        }
+        newPostBTN.setOnClickListener{
+            val intent = Intent(this , PostActivity::class.java)
+            startActivity(intent)
+        }
+
         val searchView : SearchView = findViewById<SearchView>(R.id.search_bar)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             // Override onQueryTextSubmit method which is call when submit query is searched
@@ -88,9 +100,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        setTheme(nightMode)
         mainViewModel.loadData()
-        Log.d("Lifecycle", "onResume: $nightMode")
         if (mainViewModel.items.value!!.isEmpty())
         {
             loadingPB!!.visibility = View.VISIBLE
@@ -98,7 +108,7 @@ class MainActivity : AppCompatActivity() {
 
         //Recycler View
         val listView = findViewById<RecyclerView>(R.id.PostList)
-        linearLayoutManager = LinearLayoutManager(this)
+        val linearLayoutManager = LinearLayoutManager(this)
         listView.layoutManager = linearLayoutManager
         adapter = TheAdapter(mainViewModel.items.value!!) { showDetail(it) }
         listView.adapter = adapter
@@ -137,17 +147,6 @@ class MainActivity : AppCompatActivity() {
             putExtra("Post",item)
         }
         startActivity(intent)
-    }
-
-    fun changeTheme(nightMode: Boolean) {
-        Log.d("Theme", "Night Mode : $nightMode")
-        this.nightMode = nightMode
-        val sharedPref = applicationContext.getSharedPreferences("DayNight",Context.MODE_PRIVATE) ?: return
-        with (sharedPref.edit()) {
-            putBoolean("NightMode",nightMode)
-            apply()
-        }
-        Log.d("Theme", "changeTheme to $nightMode")
     }
 
     private fun setTheme(nightMode: Boolean){

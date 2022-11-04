@@ -125,13 +125,9 @@ class UpdateActivity: AppCompatActivity(),AdapterView.OnItemSelectedListener {
 //                val p = Post(title,company, dateInput.text.toString() ,foodItem, post.postedDate , location ,Integer.parseInt(postInput.text.toString()) ,people , contactInput.text.toString() ,time, meal, desc)
                 if(mainViewModel.updatePost(p))
                 {
-                    mainViewModel.loadData()
-                    Log.d("Database", "")
                     val mainAct = Intent().putExtra("Post",p)
                     setResult(RESULT_OK,mainAct)
                     finish()
-//                    val listView = findViewById<RecyclerView>(R.id.PostList)
-//                    listView.adapter?.notifyDataSetChanged()
                 }
                 else
                 {
